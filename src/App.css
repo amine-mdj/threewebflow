@@ -1,0 +1,47 @@
+/* App.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: monospace;
+  background-color: #1e1e1e;
+  color: white;
+}
+
+.home-wrapper {
+  min-height: 100vh;
+  padding: 40px;
+  text-align: center;
+}
+
+.home-title {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.home-description {
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.home-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.home-link {
+  font-size: 14px;
+  padding: 10px 16px;
+  color: #61dafb;
+  text-decoration: none;
+  border: 1px solid #61dafb;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.home-link:hover {
+  background-color: #61dafb;
+  color: #1e1e1e;
+}
+

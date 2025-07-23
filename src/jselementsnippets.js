@@ -1029,19 +1029,273 @@ export const jsElementSnippets = [
 </body>
 </html>
 ` },
-  { method: 'hasChildNodes()', example: '' },
-  { method: 'id', example: '' },
-  { method: 'innerHTML', example: '' },
-  { method: 'innerText', example: '' },
-  { method: 'insertAdjacentElement()', example: '' },
-  { method: 'insertAdjacentHTML()', example: '' },
-  { method: 'insertAdjacentText()', example: '' },
-  { method: 'insertBefore()', example: '' },
-  { method: 'isContentEditable', example: '' },
-  { method: 'isDefaultNamespace()', example: '' },
-  { method: 'isEqualNode()', example: '' },
-  { method: 'isSameNode()', example: '' },
-  { method: 'isSupported()', example: '' },
+  { method: 'hasChildNodes()', example: `<!DOCTYPE html>
+<html>
+<head>
+  <title>hasChildNodes() Example</title>
+</head>
+<body>
+
+  <div id="parent">
+    <p>This is a child paragraph.</p>
+  </div>
+
+  <button onclick="checkChildren()">Check if element has child nodes</button>
+
+  <script>
+    function checkChildren() {
+      const parent = document.getElementById('parent');
+      if (parent.hasChildNodes()) {
+        console.log('The element has child nodes.');
+      } else {
+        console.log('The element has NO child nodes.');
+      }
+    }
+  </script>
+
+</body>
+</html>` },
+  { method: 'id', example: `<!DOCTYPE html>
+<html>
+<head>
+  <title>id Example</title>
+</head>
+<body>
+
+  <div id="originalId">Hello</div>
+  <button onclick="changeId()">Change ID</button>
+
+  <script>
+    function changeId() {
+      const div = document.getElementById('originalId');
+
+      // Lire l'id actuel
+      console.log('Old ID:', div.id); // Affiche "originalId"
+
+      // Changer l'id
+      div.id = 'newId';
+      console.log('New ID:', div.id); // Affiche "newId"
+    }
+  </script>
+
+</body>
+</html>` },
+  { method: 'innerHTML', example: `<!DOCTYPE html>
+<html>
+<head>
+  <title>id Example</title>
+</head>
+<body>
+
+  <div id="originalId">Hello</div>
+  <button onclick="changeId()">Change ID</button>
+
+  <script>
+    function changeId() {
+      const div = document.getElementById('originalId');
+
+      // Lire l'id actuel
+      console.log('Old ID:', div.id); // Affiche "originalId"
+
+      // Changer l'id
+      div.id = 'newId';
+      console.log('New ID:', div.id); // Affiche "newId"
+    }
+  </script>
+
+</body>
+</html>` },
+  { method: 'innerText', example: `<!DOCTYPE html>
+<html>
+<head>
+  <title>innerText Example</title>
+</head>
+<body>
+
+  <div id="message">Bienvenue <strong>utilisateur</strong> !</div>
+  <button onclick="changeText()">Changer le texte</button>
+
+  <script>
+    function changeText() {
+      const div = document.getElementById('message');
+
+      // Lire le texte visible
+      console.log('Texte actuel :', div.innerText); // Affiche : Bienvenue utilisateur !
+
+      // Modifier le texte
+      div.innerText = 'Texte remplacé par JavaScript.';
+    }
+  </script>
+
+</body>
+</html>` },
+  { method: 'insertAdjacentElement()', example: `<!DOCTYPE html>
+<html>
+<head>
+  <title>insertAdjacentElement Example</title>
+</head>
+<body>
+
+  <div id="reference">Élément de référence</div>
+
+  <script>
+    const ref = document.getElementById('reference');
+
+    // Création d'un nouvel élément
+    const newEl = document.createElement('p');
+    newEl.textContent = 'Paragraphe inséré après l\'élément de référence.';
+
+    // Insertion après l'élément de référence
+    ref.insertAdjacentElement('afterend', newEl);
+  </script>
+
+</body>
+</html>` },
+  { method: 'insertAdjacentHTML()', example: `<!DOCTYPE html>
+<html>
+<head>
+  <title>insertAdjacentHTML Example</title>
+</head>
+<body>
+
+  <div id="container">Contenu existant</div>
+
+  <script>
+    const container = document.getElementById('container');
+
+    // Insertion d'un nouveau bouton juste avant la fin de l'élément #container
+    container.insertAdjacentHTML('beforeend', '<button>Cliquer ici</button>');
+  </script>
+
+</body>
+</html>` },
+  { method: 'insertAdjacentText()', example: `<!DOCTYPE html>
+<html>
+<head>
+  <title>insertAdjacentText Example</title>
+</head>
+<body>
+
+  <div id="message">Bonjour</div>
+
+  <script>
+    const msg = document.getElementById('message');
+
+    // Ajoute du texte à la fin de l'élément (à l'intérieur)
+    msg.insertAdjacentText('beforeend', ', comment ça va ?');
+  </script>
+
+</body>
+</html>` },
+  { method: 'insertBefore()', example: `<!DOCTYPE html>
+<html>
+<head>
+  <title>insertBefore Example</title>
+</head>
+<body>
+
+  <ul id="list">
+    <li>Item 1</li>
+    <li id="item2">Item 2</li>
+  </ul>
+
+  <script>
+    const list = document.getElementById('list');
+    const item2 = document.getElementById('item2');
+
+    // Crée un nouvel élément <li>
+    const newItem = document.createElement('li');
+    newItem.textContent = 'Inserted Item';
+
+    // Insère le nouvel élément avant "Item 2"
+    list.insertBefore(newItem, item2);
+  </script>
+
+</body>
+</html>` },
+  { method: 'isContentEditable', example: `<!DOCTYPE html>
+<html>
+<head>
+  <title>isContentEditable Example</title>
+</head>
+<body>
+
+  <div id="editable" contenteditable="true">You can edit this text.</div>
+  <div id="nonEditable">This text is not editable.</div>
+
+  <script>
+    const editableDiv = document.getElementById('editable');
+    const nonEditableDiv = document.getElementById('nonEditable');
+
+    console.log(editableDiv.isContentEditable);     // true
+    console.log(nonEditableDiv.isContentEditable);  // false
+  </script>
+
+</body>
+</html>` },
+  { method: 'isDefaultNamespace()', example: `<!DOCTYPE html>
+<html>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg">
+  <circle id="myCircle" cx="50" cy="50" r="40" fill="red" />
+</svg>
+
+<script>
+  const circle = document.getElementById("myCircle");
+  const svgNamespace = "http://www.w3.org/2000/svg";
+
+  console.log(circle.isDefaultNamespace(svgNamespace)); // true
+  console.log(circle.isDefaultNamespace("http://example.com")); // false
+</script>
+
+</body>
+</html>` },
+  { method: 'isEqualNode()', example: `<!DOCTYPE html>
+<html>
+<body>
+
+<div id="div1"><p>Hello</p></div>
+<div id="div2"><p>Hello</p></div>
+
+<script>
+  const div1 = document.getElementById("div1");
+  const div2 = document.getElementById("div2");
+
+  console.log(div1.isEqualNode(div2)); // true
+</script>
+
+</body>
+</html>` },
+  { method: 'isSameNode()', example: `<!DOCTYPE html>
+<html>
+<body>
+
+<div id="myDiv">Hello</div>
+
+<script>
+  const a = document.getElementById("myDiv");
+  const b = document.getElementById("myDiv");
+  const c = document.createElement("div");
+
+  console.log(a.isSameNode(b)); // true (même nœud exact)
+  console.log(a.isSameNode(c)); // false (nœuds différents)
+</script>
+
+</body>
+</html>` },
+  { method: 'isSupported()', example: `<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+  // Vérifie si la méthode "createElement" est supportée dans le DOM niveau 1
+  const isSupported = document.implementation.isSupported("HTML", "1.0");
+  console.log(isSupported); // true dans presque tous les navigateurs modernes
+</script>
+
+</body>
+</html>` },
   { method: 'lang', example: '' },
   { method: 'lastChild', example: '' },
   { method: 'lastElementChild', example: '' },

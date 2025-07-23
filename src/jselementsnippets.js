@@ -736,16 +736,299 @@ export const jsElementSnippets = [
 </body>
 </html>
 ` },
-  { method: 'firstChild', example: '' },
-  { method: 'firstElementChild', example: '' },
-  { method: 'focus()', example: '' },
-  { method: 'getAttribute()', example: '' },
-  { method: 'getAttributeNode()', example: '' },
-  { method: 'getBoundingClientRect()', example: '' },
-  { method: 'getElementsByClassName()', example: '' },
-  { method: 'getElementsByTagName()', example: '' },
-  { method: 'hasAttribute()', example: '' },
-  { method: 'hasAttributes()', example: '' },
+  { method: 'firstChild', example: `<!DOCTYPE html>
+<html>
+<head>
+  <title>firstChild Example</title>
+</head>
+<body>
+
+  <div id="container">
+    <p>Hello</p>
+    <p>World</p>
+  </div>
+
+  <script>
+    const container = document.getElementById("container");
+    const firstChild = container.firstChild;
+
+    console.log(firstChild);
+
+    /*
+    OUTPUT:
+    #text
+
+    Explanation:
+    The firstChild of the container is a text node (often a newline or space between the <div> and the first <p>),
+    not the <p> element. Use firstElementChild if you want to skip text nodes and get the first element directly.
+    */
+  </script>
+
+</body>
+</html>
+` },
+  { method: 'firstElementChild', example: `<!DOCTYPE html>
+<html>
+<head>
+  <title>firstElementChild Example</title>
+</head>
+<body>
+
+  <div id="container">
+    <p>Hello</p>
+    <p>World</p>
+  </div>
+
+  <script>
+    const container = document.getElementById("container");
+    const firstElem = container.firstElementChild;
+
+    console.log(firstElem);
+
+    /*
+    OUTPUT:
+    <p>Hello</p>
+
+    Explanation:
+    \`firstElementChild\` skips over text nodes (like whitespace or newlines) and returns the first actual HTML element inside the container.
+    In this case, it's the <p>Hello</p> element.
+    */
+  </script>
+
+</body>
+</html>
+` },
+  { method: 'focus()', example: `<!DOCTYPE html>
+<html>
+<head>
+  <title>focus() Example</title>
+</head>
+<body>
+
+  <input type="text" id="myInput" placeholder="Click button to focus me" />
+  <button onclick="focusInput()">Focus the input</button>
+
+  <script>
+    function focusInput() {
+      const input = document.getElementById("myInput");
+      input.focus();
+    }
+
+    /*
+    OUTPUT:
+    When you click the button, the input field is automatically focused,
+    as if you clicked inside it. This is useful for guiding user interaction,
+    such as placing the cursor where text input is expected.
+
+    You won't see console output, but you'll notice the blinking cursor inside the input field.
+    */
+  </script>
+
+</body>
+</html>
+` },
+  { method: 'getAttribute()', example: `<!DOCTYPE html>
+<html>
+<head>
+  <title>getAttribute() Example</title>
+</head>
+<body>
+
+  <a id="myLink" href="https://example.com" target="_blank">Visit Example.com</a>
+  <button onclick="showHref()">Show href attribute</button>
+
+  <p id="output"></p>
+
+  <script>
+    function showHref() {
+      const link = document.getElementById("myLink");
+      const hrefValue = link.getAttribute("href");
+      document.getElementById("output").textContent = \`The href is: \${hrefValue}\`;
+    }
+
+    /*
+    OUTPUT:
+    When the button is clicked, it displays:
+    "The href is: https://example.com"
+    This shows that getAttribute('href') retrieves the value of the href attribute of the <a> element.
+    */
+  </script>
+
+</body>
+</html>
+` },
+  { method: 'getAttributeNode()', example: `<!DOCTYPE html>
+<html>
+<head>
+  <title>getAttributeNode() Example</title>
+</head>
+<body>
+
+  <img id="myImage" src="cat.jpg" alt="A cute cat">
+
+  <button onclick="showAltNode()">Show alt attribute node</button>
+
+  <p id="output"></p>
+
+  <script>
+    function showAltNode() {
+      const img = document.getElementById("myImage");
+      const attrNode = img.getAttributeNode("alt");
+      document.getElementById("output").textContent = \`Attribute name: \${attrNode.name}, value: \${attrNode.value}\`;
+    }
+
+    /*
+    OUTPUT:
+    When the button is clicked, it displays:
+    "Attribute name: alt, value: A cute cat"
+    This shows that getAttributeNode("alt") returns an Attr object with name and value.
+    */
+  </script>
+
+</body>
+</html>
+` },
+  { method: 'getBoundingClientRect()', example: `<!DOCTYPE html>
+<html>
+<head>
+  <title>getBoundingClientRect() Example</title>
+  <style>
+    #box {
+      width: 200px;
+      height: 100px;
+      background-color: lightcoral;
+      margin-top: 150px;
+      margin-left: 100px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="box">Hello</div>
+  <button onclick="showRect()">Get Position & Size</button>
+  <pre id="output"></pre>
+
+  <script>
+    function showRect() {
+      const box = document.getElementById('box');
+      const rect = box.getBoundingClientRect();
+      document.getElementById('output').textContent =
+        \`Top: \${rect.top}px\nLeft: \${rect.left}px\nWidth: \${rect.width}px\nHeight: \${rect.height}px\`;
+    }
+  </script>
+
+</body>
+</html>
+` },
+  { method: 'getElementsByClassName()', example: `<!DOCTYPE html>
+<html>
+<head>
+  <title>getElementsByClassName() Example</title>
+  <style>
+    .highlight {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+
+  <p class="highlight">This is highlighted.</p>
+  <p>This is normal.</p>
+  <p class="highlight">This is also highlighted.</p>
+  <button onclick="highlightAll()">Add Border to Highlighted</button>
+
+  <script>
+    function highlightAll() {
+      const highlightedElements = document.getElementsByClassName('highlight');
+      for (let i = 0; i < highlightedElements.length; i++) {
+        highlightedElements[i].style.border = '2px solid red';
+      }
+    }
+  </script>
+
+</body>
+</html>
+` },
+  { method: 'getElementsByTagName()', example: `<!DOCTYPE html>
+<html>
+<head>
+  <title>getElementsByTagName() Example</title>
+</head>
+<body>
+
+  <h2>Fruits</h2>
+  <ul>
+    <li>Apple</li>
+    <li>Banana</li>
+    <li>Orange</li>
+  </ul>
+
+  <button onclick="colorListItems()">Color All List Items</button>
+
+  <script>
+    function colorListItems() {
+      const listItems = document.getElementsByTagName('li');
+      for (let i = 0; i < listItems.length; i++) {
+        listItems[i].style.color = 'blue';
+      }
+    }
+  </script>
+
+</body>
+</html>
+` },
+  { method: 'hasAttribute()', example: `<!DOCTYPE html>
+<html>
+<head>
+  <title>hasAttribute() Example</title>
+</head>
+<body>
+
+  <input type="text" id="username" placeholder="Enter username">
+
+  <button onclick="checkAttribute()">Check Attribute</button>
+
+  <script>
+    function checkAttribute() {
+      const input = document.getElementById('username');
+      if (input.hasAttribute('placeholder')) {
+        alert('The input has a placeholder attribute.');
+      } else {
+        alert('The input does NOT have a placeholder attribute.');
+      }
+    }
+  </script>
+
+</body>
+</html>
+` },
+  { method: 'hasAttributes()', example: `<!DOCTYPE html>
+<html>
+<head>
+  <title>hasAttributes() Example</title>
+</head>
+<body>
+
+  <div id="box" class="container" data-info="example"></div>
+
+  <button onclick="checkAttributes()">Check Attributes</button>
+
+  <script>
+    function checkAttributes() {
+      const box = document.getElementById('box');
+      if (box.hasAttributes()) {
+        console.log('The element has attributes.');
+      } else {
+        console.log('The element has NO attributes.');
+      }
+    }
+
+    checkAttributes(); // You can also run this immediately
+  </script>
+
+</body>
+</html>
+` },
   { method: 'hasChildNodes()', example: '' },
   { method: 'id', example: '' },
   { method: 'innerHTML', example: '' },

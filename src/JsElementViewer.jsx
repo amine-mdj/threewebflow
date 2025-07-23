@@ -90,7 +90,7 @@ const styles = {
   },
   grid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(10, 1fr)',
+    gridTemplateColumns: 'repeat(8, 1fr)',
     gap: '6px',
     alignItems: 'start',
   },

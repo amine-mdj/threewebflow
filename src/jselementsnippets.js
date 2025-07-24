@@ -1296,48 +1296,887 @@ export const jsElementSnippets = [
 
 </body>
 </html>` },
-  { method: 'lang', example: '' },
-  { method: 'lastChild', example: '' },
-  { method: 'lastElementChild', example: '' },
-  { method: 'matches()', example: '' },
-  { method: 'namespaceURI', example: '' },
-  { method: 'nextSibling', example: '' },
-  { method: 'nextElementSibling', example: '' },
-  { method: 'nodeName', example: '' },
-  { method: 'nodeType', example: '' },
-  { method: 'nodeValue', example: '' },
-  { method: 'normalize()', example: '' },
-  { method: 'offsetHeight', example: '' },
-  { method: 'offsetWidth', example: '' },
-  { method: 'offsetLeft', example: '' },
-  { method: 'offsetParent', example: '' },
-  { method: 'offsetTop', example: '' },
-  { method: 'outerHTML', example: '' },
-  { method: 'outerText', example: '' },
-  { method: 'ownerDocument', example: '' },
-  { method: 'parentNode', example: '' },
-  { method: 'parentElement', example: '' },
-  { method: 'previousSibling', example: '' },
-  { method: 'previousElementSibling', example: '' },
-  { method: 'querySelector()', example: '' },
-  { method: 'querySelectorAll()', example: '' },
-  { method: 'remove()', example: '' },
-  { method: 'removeAttribute()', example: '' },
-  { method: 'removeAttributeNode()', example: '' },
-  { method: 'removeChild()', example: '' },
-  { method: 'removeEventListener()', example: '' },
-  { method: 'replaceChild()', example: '' },
-  { method: 'scrollHeight', example: '' },
-  { method: 'scrollIntoView()', example: '' },
-  { method: 'scrollLeft', example: '' },
-  { method: 'scrollTop', example: '' },
-  { method: 'scrollWidth', example: '' },
-  { method: 'setAttribute()', example: '' },
-  { method: 'setAttributeNode()', example: '' },
-  { method: 'style', example: '' },
-  { method: 'tabIndex', example: '' },
-  { method: 'tagName', example: '' },
-  { method: 'textContent', example: '' },
-  { method: 'title', example: '' },
-  { method: 'toString()', example: '' }
+  { method: 'lang', example: `<!DOCTYPE html>
+<html>
+<body>
+
+<p id="myParagraph" lang="en">Hello!</p>
+
+<script>
+  const paragraph = document.getElementById("myParagraph");
+
+  // 🔍 Lire la langue actuelle
+  console.log(paragraph.lang); // "en"
+
+  // ✏️ Modifier la langue
+  paragraph.lang = "fr";
+  console.log(paragraph.lang); // "fr"
+</script>
+
+</body>
+</html>
+` },
+  { method: 'lastChild', example: `<!DOCTYPE html>
+<html>
+<body>
+
+<div id="container">
+  <p>First paragraph</p>
+  <p>Last paragraph</p>
+</div>
+
+<script>
+  const container = document.getElementById("container");
+
+  // Récupère le dernier nœud enfant (peut être un élément, un texte, un commentaire, etc.)
+  const lastChild = container.lastChild;
+
+  console.log(lastChild); // Cela peut afficher un élément ou un nœud texte selon le DOM
+</script>
+
+</body>
+</html>
+` },
+  { method: 'lastElementChild', example: `<!DOCTYPE html>
+<html>
+<body>
+
+<div id="container">
+  <p>First paragraph</p>
+  <p>Last paragraph</p>
+</div>
+
+<script>
+  const container = document.getElementById("container");
+
+  // Récupère le dernier élément enfant (ignore les nœuds texte/commentaires)
+  const lastElement = container.lastElementChild;
+
+  console.log(lastElement.textContent); // Affiche : "Last paragraph"
+</script>
+
+</body>
+</html>
+` },
+  { method: 'matches()', example: `<!DOCTYPE html>
+<html>
+<body>
+
+<div class="box special">This is a box</div>
+
+<script>
+  const box = document.querySelector(".box");
+
+  // Vérifie si l'élément correspond au sélecteur ".special"
+  if (box.matches(".special")) {
+    console.log("L'élément a la classe 'special'.");
+  } else {
+    console.log("L'élément n'a pas la classe 'special'.");
+  }
+</script>
+
+</body>
+</html>
+` },
+  { method: 'namespaceURI', example: `<!DOCTYPE html>
+<html>
+<body>
+
+<svg width="100" height="100" id="mySvg">
+  <circle cx="50" cy="50" r="40" stroke="green"
+          stroke-width="4" fill="yellow" />
+</svg>
+
+<script>
+  const svg = document.getElementById("mySvg");
+  console.log(svg.namespaceURI); // "http://www.w3.org/2000/svg"
+</script>
+
+</body>
+</html>
+` },
+  { method: 'nextSibling', example: `<!DOCTYPE html>
+<html>
+<body>
+
+<div id="first">Premier</div>
+<!-- Un commentaire ou un espace ici est aussi un nœud -->
+<div id="second">Deuxième</div>
+
+<script>
+  const firstDiv = document.getElementById("first");
+  const nextNode = firstDiv.nextSibling;
+
+  console.log(nextNode); // Cela peut afficher un nœud de type texte (espace, saut de ligne, etc.)
+</script>
+
+</body>
+</html>
+` },
+  { method: 'nextElementSibling', example: `<!DOCTYPE html>
+<html>
+<body>
+
+<div id="first">Premier élément</div>
+<div id="second">Deuxième élément</div>
+
+<script>
+  const firstDiv = document.getElementById("first");
+  const nextElement = firstDiv.nextElementSibling;
+
+  console.log(nextElement);         // <div id="second">Deuxième élément</div>
+  console.log(nextElement.innerText); // "Deuxième élément"
+</script>
+
+</body>
+</html>
+` },
+  { method: 'nodeName', example: `<!DOCTYPE html>
+<html>
+<body>
+
+<p id="myPara">Bonjour</p>
+
+<script>
+  const element = document.getElementById("myPara");
+  console.log(element.nodeName); // "P"
+</script>
+
+</body>
+</html>
+` },
+  { method: 'nodeType', example: `<!DOCTYPE html>
+<html>
+<body>
+
+<p id="myPara">Bonjour</p>
+
+<script>
+  const element = document.getElementById("myPara");
+  console.log(element.nodeType); // 1 (ELEMENT_NODE)
+</script>
+
+</body>
+</html>
+` },
+  { method: 'nodeValue', example: `<p id="myPara">Hello world!</p>
+
+<script>
+  const para = document.getElementById("myPara");
+  const textNode = para.firstChild; // récupère le nœud texte
+
+  console.log(textNode.nodeValue); // "Hello world!"
+</script>
+` },
+  { method: 'normalize()', example: `<div id="myDiv">
+  Hello
+  <span> </span>
+  World
+</div>
+
+<script>
+  const div = document.getElementById("myDiv");
+
+  // Créons volontairement des nœuds texte adjacents
+  div.appendChild(document.createTextNode("!"));
+  div.appendChild(document.createTextNode("!!"));
+
+  console.log(div.childNodes.length); // Avant normalize : plusieurs nœuds texte
+
+  div.normalize(); // Fusionne les nœuds texte adjacents
+
+  console.log(div.childNodes.length); // Après normalize : nœuds texte fusionnés
+</script>
+` },
+  { method: 'offsetHeight', example: `<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #box {
+      width: 200px;
+      height: 100px;
+      padding: 20px;
+      border: 5px solid black;
+      overflow: auto;
+    }
+  </style>
+</head>
+<body>
+
+<div id="box">
+  Some content inside the box.
+</div>
+
+<script>
+  const box = document.getElementById("box");
+  console.log("Hauteur totale de l'élément :", box.offsetHeight + "px");
+</script>
+
+</body>
+</html>
+` },
+  { method: 'offsetWidth', example: `<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #box {
+      width: 300px;
+      height: 100px;
+      padding: 20px;
+      border: 5px solid black;
+      overflow: auto;
+    }
+  </style>
+</head>
+<body>
+
+<div id="box">
+  This is a box with some content.
+</div>
+
+<script>
+  const box = document.getElementById("box");
+  console.log("Largeur totale de l'élément :", box.offsetWidth + "px");
+</script>
+
+</body>
+</html>
+` },
+  { method: 'offsetLeft', example: `<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .container {
+      position: relative;
+      padding: 50px;
+    }
+
+    #myBox {
+      position: absolute;
+      left: 100px;
+      top: 20px;
+      width: 100px;
+      height: 100px;
+      background-color: lightblue;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div id="myBox">Box</div>
+</div>
+
+<script>
+  const box = document.getElementById("myBox");
+  console.log("Distance depuis le bord gauche du parent :", box.offsetLeft + "px");
+</script>
+
+</body>
+</html>
+` },
+  { method: 'offsetParent', example: `<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .wrapper {
+      position: relative;
+      padding: 20px;
+      background-color: lightgray;
+    }
+
+    .inner {
+      position: absolute;
+      left: 50px;
+      top: 30px;
+      background-color: lightcoral;
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrapper" id="container">
+  <div class="inner" id="box">Box</div>
+</div>
+
+<script>
+  const box = document.getElementById("box");
+  const offsetParent = box.offsetParent;
+
+  console.log("offsetParent ID:", offsetParent.id); // "container"
+  console.log("offsetLeft:", box.offsetLeft + "px");
+  console.log("offsetTop:", box.offsetTop + "px");
+</script>
+
+</body>
+</html>
+` },
+  { method: 'offsetTop', example: `<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .container {
+      position: relative;
+      height: 300px;
+      background-color: lightgray;
+    }
+
+    .box {
+      position: absolute;
+      top: 100px;
+      left: 50px;
+      width: 100px;
+      height: 100px;
+      background-color: lightblue;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="box" id="myBox">Box</div>
+</div>
+
+<script>
+  const box = document.getElementById("myBox");
+  const offsetTop = box.offsetTop;
+
+  console.log("offsetTop:", offsetTop + "px"); // Affiche "100px"
+</script>
+
+</body>
+</html>
+` },
+  { method: 'outerHTML', example: `<div id="myDiv">Hello <strong>world</strong>!</div>
+
+<script>
+  const div = document.getElementById("myDiv");
+  console.log(div.outerHTML);
+  // Affiche : <div id="myDiv">Hello <strong>world</strong>!</div>
+</script>
+` },
+  { method: 'outerText', example: `<div id="example">Hello <strong>world</strong>!</div>
+
+<script>
+  const div = document.getElementById("example");
+  console.log(div.outerText); 
+  // Affiche : Hello world
+</script>
+` },
+  { method: 'ownerDocument', example: `<div id="myDiv">Hello</div>
+
+<script>
+  const div = document.getElementById("myDiv");
+
+  // Récupérer le document auquel appartient l'élément
+  const doc = div.ownerDocument;
+
+  console.log(doc === document); // true
+  console.log(doc.title); // Affiche le titre de la page
+</script>
+` },
+  { method: 'parentNode', example: `<div id="parent">
+  <p id="child">Bonjour !</p>
+</div>
+
+<script>
+  const child = document.getElementById("child");
+
+  // Obtenir le parent de l'élément
+  const parent = child.parentNode;
+
+  console.log(parent.id); // "parent"
+</script>
+` },
+  { method: 'parentElement', example: `<div id="container">
+  <p id="child">Hello!</p>
+</div>
+
+<script>
+  const child = document.getElementById("child");
+
+  // Obtenir le parent élément de l'élément
+  const parent = child.parentElement;
+
+  console.log(parent.id); // "container"
+</script>
+` },
+  { method: 'previousSibling', example: `<div id="container">
+  <p id="first">First paragraph</p>
+  <!-- A text node (like whitespace) might be here -->
+  <p id="second">Second paragraph</p>
+</div>
+
+<script>
+  const second = document.getElementById("second");
+
+  const previous = second.previousSibling;
+
+  console.log(previous); // Cela peut être un nœud de texte ou un commentaire
+
+  // Pour s'assurer que c'est un élément HTML :
+  if (previous.nodeType === 1) {
+    console.log("Previous element is:", previous.tagName);
+  } else {
+    console.log("Previous sibling is not an element:", previous.nodeName);
+  }
+</script>
+` },
+  { method: 'previousElementSibling', example: `<div id="container">
+  <p id="first">First paragraph</p>
+  <p id="second">Second paragraph</p>
+</div>
+
+<script>
+  const second = document.getElementById("second");
+
+  const previousElement = second.previousElementSibling;
+
+  console.log(previousElement); // <p id="first">First paragraph</p>
+  console.log(previousElement.textContent); // "First paragraph"
+</script>
+` },
+  { method: 'querySelector()', example: `<div id="container">
+  <p class="message">Hello</p>
+  <p class="message">Hi again</p>
+</div>
+
+<script>
+  const firstMessage = document.querySelector(".message");
+
+  console.log(firstMessage.textContent); // "Hello"
+</script>
+` },
+  { method: 'querySelectorAll()', example: `<div id="container">
+  <p class="item">First</p>
+  <p class="item">Second</p>
+  <p class="item">Third</p>
+</div>
+
+<script>
+  const items = document.querySelectorAll(".item");
+
+  items.forEach((el) => {
+    console.log(el.textContent);
+  });
+
+  // Résultat dans la console :
+  // First
+  // Second
+  // Third
+</script>
+` },
+  { method: 'remove()', example: `<div id="to-delete">Ce texte sera supprimé</div>
+
+<script>
+  const element = document.getElementById("to-delete");
+  element.remove(); // L'élément est supprimé du DOM
+</script>
+` },
+  { method: 'removeAttribute()', example: `<button id="myBtn" disabled>Click Me</button>
+
+<script>
+  const btn = document.getElementById("myBtn");
+  btn.removeAttribute("disabled"); // Le bouton devient cliquable
+</script>
+` },
+  { method: 'removeAttributeNode()', example: `<div id="myDiv" title="Hello world"></div>
+
+<script>
+  const div = document.getElementById("myDiv");
+
+  // Récupérer le nœud d'attribut "title"
+  const attr = div.getAttributeNode("title");
+
+  // Supprimer l'attribut en utilisant removeAttributeNode()
+  const removedAttr = div.removeAttributeNode(attr);
+
+  console.log(removedAttr); // Affiche : title="Hello world"
+</script>
+` },
+  { method: 'removeChild()', example: `<ul id="myList">
+  <li>Item 1</li>
+  <li id="itemToRemove">Item 2</li>
+  <li>Item 3</li>
+</ul>
+
+<script>
+  const list = document.getElementById("myList");
+  const item = document.getElementById("itemToRemove");
+
+  // Supprime l'élément <li> avec l'id "itemToRemove"
+  const removedItem = list.removeChild(item);
+
+  console.log(removedItem); // Affiche : <li id="itemToRemove">Item 2</li>
+</script>
+` },
+  { method: 'removeEventListener()', example: `<button id="myBtn">Click me</button>
+
+<script>
+  const button = document.getElementById("myBtn");
+
+  function handleClick() {
+    alert("Button clicked!");
+  }
+
+  // Ajoute l'événement
+  button.addEventListener("click", handleClick);
+
+  // Supprime l'événement après 5 secondes
+  setTimeout(() => {
+    button.removeEventListener("click", handleClick);
+    console.log("Event listener removed.");
+  }, 5000);
+</script>
+` },
+  { method: 'replaceChild()', example: `<div id="container">
+  <p id="oldPara">This is the old paragraph.</p>
+</div>
+
+<script>
+  const container = document.getElementById("container");
+  const oldParagraph = document.getElementById("oldPara");
+
+  const newParagraph = document.createElement("p");
+  newParagraph.textContent = "This is the new paragraph.";
+
+  // Remplace le paragraphe existant par le nouveau
+  container.replaceChild(newParagraph, oldParagraph);
+</script>
+` },
+  { method: 'scrollHeight', example: `<div id="content" style="width: 300px; height: 100px; overflow-y: scroll; padding: 10px; border: 1px solid #ccc;">
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod augue ut dolor gravida.</p>
+</div>
+
+<script>
+  const content = document.getElementById("content");
+  console.log("scrollHeight:", content.scrollHeight); // Affiche la hauteur totale du contenu, y compris le contenu non visible
+</script>
+` },
+  { method: 'scrollIntoView()', example: `<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .spacer {
+      height: 1000px;
+    }
+    #target {
+      background-color: lightgreen;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="spacer">Scroll down...</div>
+
+<div id="target">🎯 Élément cible</div>
+
+<button onclick="scrollToTarget()">Aller à l'élément</button>
+
+<script>
+  function scrollToTarget() {
+    const target = document.getElementById("target");
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+</script>
+
+</body>
+</html>
+` },
+  { method: 'scrollLeft', example: `<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #scrollBox {
+      width: 200px;
+      height: 100px;
+      overflow: auto;
+      white-space: nowrap;
+      border: 1px solid black;
+    }
+    .content {
+      display: inline-block;
+      width: 600px;
+      height: 100px;
+      background: linear-gradient(to right, red, yellow, green, blue);
+    }
+  </style>
+</head>
+<body>
+
+<div id="scrollBox">
+  <div class="content"></div>
+</div>
+
+<button onclick="logScroll()">Afficher scrollLeft</button>
+<button onclick="scrollRight()">Faire défiler à droite</button>
+
+<script>
+  const scrollBox = document.getElementById("scrollBox");
+
+  function logScroll() {
+    console.log("scrollLeft:", scrollBox.scrollLeft);
+  }
+
+  function scrollRight() {
+    scrollBox.scrollLeft += 100; // Fait défiler de 100 pixels vers la droite
+  }
+</script>
+
+</body>
+</html>
+` },
+  { method: 'scrollTop', example: `<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #scrollBox {
+      width: 300px;
+      height: 150px;
+      overflow-y: auto;
+      border: 1px solid black;
+    }
+
+    .content {
+      height: 600px;
+      background: linear-gradient(white, lightblue);
+    }
+  </style>
+</head>
+<body>
+
+<div id="scrollBox">
+  <div class="content"></div>
+</div>
+
+<button onclick="logScroll()">Afficher scrollTop</button>
+<button onclick="scrollDown()">Faire défiler vers le bas</button>
+
+<script>
+  const scrollBox = document.getElementById("scrollBox");
+
+  function logScroll() {
+    console.log("scrollTop:", scrollBox.scrollTop);
+  }
+
+  function scrollDown() {
+    scrollBox.scrollTop += 50; // Fait défiler de 50 pixels vers le bas
+  }
+</script>
+
+</body>
+</html>
+` },
+  { method: 'scrollWidth', example: `<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #scrollBox {
+      width: 200px;
+      overflow-x: auto;
+      border: 1px solid black;
+    }
+
+    .content {
+      width: 800px;
+      height: 100px;
+      background-color: lightcoral;
+    }
+  </style>
+</head>
+<body>
+
+<div id="scrollBox">
+  <div class="content"></div>
+</div>
+
+<button onclick="showScrollWidth()">Afficher scrollWidth</button>
+
+<script>
+  function showScrollWidth() {
+    const box = document.getElementById("scrollBox");
+    console.log("scrollWidth:", box.scrollWidth); // Affiche 800
+  }
+</script>
+
+</body>
+</html>
+` },
+  { method: 'setAttribute()', example: `<!DOCTYPE html>
+<html>
+<head>
+  <title>Exemple setAttribute</title>
+</head>
+<body>
+
+<img id="myImage" src="placeholder.jpg" alt="Image par défaut">
+
+<button onclick="changeImage()">Changer l'image</button>
+
+<script>
+  function changeImage() {
+    const img = document.getElementById("myImage");
+    img.setAttribute("src", "https://via.placeholder.com/300x150");
+    img.setAttribute("alt", "Nouvelle image");
+  }
+</script>
+
+</body>
+</html>
+` },
+  { method: 'setAttributeNode()', example: `<!DOCTYPE html>
+<html>
+<head>
+  <title>Exemple setAttributeNode</title>
+</head>
+<body>
+
+<p id="myParagraph">Paragraphe exemple</p>
+<button onclick="addClassAttribute()">Ajouter un attribut</button>
+
+<script>
+  function addClassAttribute() {
+    const para = document.getElementById("myParagraph");
+
+    // Crée un attribut "class"
+    const attr = document.createAttribute("class");
+    attr.value = "highlighted";
+
+    // Ajoute le nœud d'attribut au paragraphe
+    para.setAttributeNode(attr);
+  }
+</script>
+
+<style>
+  .highlighted {
+    color: red;
+    font-weight: bold;
+  }
+</style>
+
+</body>
+</html>
+` },
+  { method: 'style', example: `<!DOCTYPE html>
+<html>
+<head>
+  <title>Exemple style</title>
+</head>
+<body>
+
+<p id="text">Ceci est un paragraphe</p>
+<button onclick="changerStyle()">Changer le style</button>
+
+<script>
+  function changerStyle() {
+    const element = document.getElementById("text");
+    element.style.color = "blue";
+    element.style.fontSize = "20px";
+    element.style.backgroundColor = "lightgray";
+  }
+</script>
+
+</body>
+</html>
+` },
+  { method: 'tabIndex', example: `<!DOCTYPE html>
+<html>
+<head>
+  <title>Exemple tabIndex</title>
+</head>
+<body>
+
+<p id="para" tabindex="2">Paragraphe 1 (tabIndex 2)</p>
+<button id="btn1" tabindex="1">Bouton 1 (tabIndex 1)</button>
+<button id="btn2">Bouton 2 (tabIndex par défaut)</button>
+
+<script>
+  // Modifier dynamiquement le tabIndex
+  const para = document.getElementById("para");
+  console.log(para.tabIndex); // Affiche 2
+
+  // Changer dynamiquement l'ordre de tabulation
+  para.tabIndex = 3;
+</script>
+
+</body>
+</html>
+` },
+  { method: 'tagName', example: `<!DOCTYPE html>
+<html>
+<body>
+
+<div id="myDiv">Bonjour</div>
+<p id="myPara">Ceci est un paragraphe.</p>
+
+<script>
+  const divElement = document.getElementById("myDiv");
+  const paraElement = document.getElementById("myPara");
+
+  console.log(divElement.tagName); // Affiche "DIV"
+  console.log(paraElement.tagName); // Affiche "P"
+</script>
+
+</body>
+</html>
+` },
+  { method: 'textContent', example: `<!DOCTYPE html>
+<html>
+<body>
+
+<div id="myDiv">
+  <p>Hello <strong>world</strong>!</p>
+</div>
+
+<script>
+  const div = document.getElementById("myDiv");
+
+  // Lire le texte brut (sans balises HTML)
+  console.log(div.textContent); // Affiche : "Hello world!"
+
+  // Modifier le contenu textuel
+  div.textContent = "Nouveau contenu texte.";
+</script>
+
+</body>
+</html>
+` },
+  { method: 'title', example: `<!DOCTYPE html>
+<html>
+<body>
+
+<button id="myBtn">Passe ta souris ici</button>
+
+<script>
+  const btn = document.getElementById("myBtn");
+
+  // Définir un titre (info-bulle au survol)
+  btn.title = "Clique ici pour exécuter une action";
+
+  // Lire la valeur du titre
+  console.log(btn.title); // Affiche : "Clique ici pour exécuter une action"
+</script>
+
+</body>
+</html>
+` },
+  { method: 'toString()', example: `<!DOCTYPE html>
+<html>
+<body>
+
+<div id="myDiv">Bonjour</div>
+
+<script>
+  const div = document.getElementById("myDiv");
+
+  // Utilisation de toString()
+  console.log(div.toString()); // Affiche : "[object HTMLDivElement]"
+</script>
+
+</body>
+</html>
+` }
 ];

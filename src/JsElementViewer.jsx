@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { jsElementSnippets } from './jselementsnippets';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/base16/dracula.css'; // Keep your dark theme
 
 const getRandomColor = () => {
   const colors = ['#f87171', '#60a5fa', '#34d399', '#facc15', '#c084fc', '#fb923c', '#38bdf8', '#f472b6'];
@@ -15,6 +17,10 @@ const JsElementViewer = () => {
     snippet.method.toLowerCase().includes(filter.toLowerCase())
   );
 
+  useEffect(() => {
+    hljs.highlightAll(); // Re-highlight all <code> blocks
+  }, [selectedIndex]);
+
   const handleSelect = (index) => {
     setSelectedIndex(index);
   };
@@ -28,7 +34,7 @@ const JsElementViewer = () => {
     <div style={styles.wrapper}>
       <input
         type="text"
-        placeholder="Search array method..."
+        placeholder="Search DOM method..."
         style={styles.input}
         value={filter}
         onChange={(e) => setFilter(e.target.value)}
@@ -57,7 +63,12 @@ const JsElementViewer = () => {
             borderColor: colors[selectedIndex],
           }}
         >
-          <pre style={styles.code}>{filteredSnippets[selectedIndex].example}</pre>
+          <pre>
+            {/* Force remounting using key */}
+            <code key={selectedIndex} className="language-javascript">
+              {filteredSnippets[selectedIndex].example}
+            </code>
+          </pre>
           <button
             onClick={() => copyToClipboard(filteredSnippets[selectedIndex].example)}
             style={styles.copyButton}
@@ -115,35 +126,25 @@ const styles = {
     outline: 'none',
   },
   panel: {
-  marginTop: '24px',
-  border: '1px solid',
-  borderRadius: '6px',
-  backgroundColor: '#252526',
-  padding: '16px', // more padding
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '12px', // more space between code and button
-},
-code: {
-  color: '#9fefb3',
-  backgroundColor: '#111',
-  fontSize: '14px', // increased from 10px
-  lineHeight: '1.6', // better readability
-  whiteSpace: 'pre-wrap',
-  margin: 0,
-  padding: '12px', // more padding
-  borderRadius: '6px',
-},
-copyButton: {
-  alignSelf: 'flex-end',
-  backgroundColor: '#333',
-  color: 'white',
-  padding: '6px 10px', // larger button
-  border: 'none',
-  borderRadius: '4px',
-  cursor: 'pointer',
-  fontSize: '12px', // slightly larger font
-},
+    marginTop: '24px',
+    border: '1px solid',
+    borderRadius: '6px',
+    backgroundColor: '#252526',
+    padding: '16px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '12px',
+  },
+  copyButton: {
+    alignSelf: 'flex-end',
+    backgroundColor: '#333',
+    color: 'white',
+    padding: '6px 10px',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    fontSize: '12px',
+  },
 };
 
 export default JsElementViewer;

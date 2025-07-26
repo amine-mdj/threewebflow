@@ -45,3 +45,10 @@ body {
   color: #1e1e1e;
 }
 
+.three{
+  position: absolute;
+  height: 110px;
+  width: 130px;
+  left: 15px;
+}
+

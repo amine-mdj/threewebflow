@@ -11,6 +11,8 @@ import JsArrayViewer from './JsArrayViewer';
 import JsStringViewer from './JsStringViewer';
 import JsMathViewer from './JsMathViewer';
 import JsElementViewer from './JsElementViewer';
+import { Ecommerce } from './ecommerce'; // Import the ecommerce component
+import Threeweb from './assets/threeweb.png';
 import './App.css';
 
 // Placeholder components
@@ -21,8 +23,56 @@ const Placeholder = ({ title }) => (
   </div>
 );
 
+
+
 const Home = () => {
+
+  const TerminalIcon = () => (
+  <span style={{
+    fontFamily: 'monospace',
+    marginRight: '8px',
+    color: '#00ff88',
+    fontWeight: 'bold',
+    fontSize: '1.1rem'
+  }}>
+  
+  </span>
+);
+
   return (
+<>
+<img className='three' src={Threeweb} alt="" />
+    <div style={{
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'flex-end',
+  padding: '1rem 2rem',
+  position: 'sticky',
+  top: 20,
+  zIndex: 1000
+}}>
+  <Link
+    to="/ecommerce"
+    style={{
+      background: '#00ff88',
+      color: '#000',
+      textDecoration: 'none',
+      padding: '0.5rem 1rem',
+      borderRadius: '8px',
+      display: 'flex',
+      alignItems: 'center',
+      fontWeight: 'bold',
+      boxShadow: '0 2px 8px rgba(0, 255, 136, 0.3)'
+    }}
+  >
+    <TerminalIcon />
+   &gt;&gt;&gt; How to Ecommerce
+  </Link>
+</div>
+
+
+
+
     <div className="home-wrapper">
       <h1 className="home-title">Welcome, Developer 👋</h1>
       <p className="home-description">
@@ -52,6 +102,7 @@ const Home = () => {
         <Link to="/js/events" className="home-link">JS Events</Link>
       </div>
     </div>
+    </>
   );
 };
 
@@ -70,6 +121,7 @@ const App = () => {
         <Route path="/js/document" element={<Placeholder title="JS Document" />} />
         <Route path="/js/element" element={<JsElementViewer />} />
         <Route path="/js/events" element={<Placeholder title="JS Events" />} />
+        <Route path="/ecommerce" element={<Ecommerce />} />
       </Routes>
     </Router>
   );

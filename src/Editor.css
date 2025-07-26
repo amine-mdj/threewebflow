@@ -1,0 +1,120 @@
+body {
+  background-color: #f3f4f6; /* Fond général clair */
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.outer{
+  height: 120vh;
+}
+/* Section d'intro */
+.intro {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 30px 20px 10px 20px;
+  color: #1e1e1e;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.intro h1 {
+  margin: 0;
+  font-size: 32px;
+  color: #1e1e1e;
+}
+
+.intro p {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Layout principal */
+.main-container {
+  display: flex;
+  width: 90%;
+  margin: auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #1e1e1e;
+}
+
+/* Colonne gauche vide (pour design futur) */
+.left {
+  width: 30%;
+  background-color: #111;
+}
+
+/* Colonne droite = éditeur + terminal */
+.right {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Partie éditeur de code */
+.top {
+  flex: 1;
+  background-color: #1e1e1e;
+  color: white;
+  padding: 20px;
+  overflow-y: auto;
+  max-height: 300px;
+  border-bottom: 1px solid #333;
+}
+
+/* Partie terminale */
+.bottom {
+  background-color: #000;
+  color: #0f0; /* Vert style terminal */
+  font-family: monospace;
+  padding: 15px;
+  height: 120px;
+  overflow-y: auto;
+  font-size: 14px;
+}
+
+/* Pour scroll propre */
+.top::-webkit-scrollbar,
+.bottom::-webkit-scrollbar {
+  width: 6px;
+}
+
+.top::-webkit-scrollbar-thumb,
+.bottom::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 3px;
+}
+
+.green-text {
+  color: #0f0;
+}
+
+/* File explorer */
+.file-explorer {
+  color: #eee;
+  padding: 15px;
+  font-size: 14px;
+  font-family: monospace;
+}
+
+.file-explorer ul {
+  list-style: none;
+  padding-left: 15px;
+}
+
+.file-explorer li {
+  margin: 6px 0;
+}
+
+.project-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
